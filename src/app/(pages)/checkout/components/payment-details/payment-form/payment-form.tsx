@@ -64,7 +64,7 @@ export function PaymentForm() {
             const discordId = getCookie('discord_id');
 
             const response = await checkout({
-                currency: currency?.name || 'USD',
+                currency: currency?.name || 'AUD',
                 paymentMethod: paymentMethod || 'PayPal',
                 details: data.details,
                 termsAndConditions: data.termsAndConditions,

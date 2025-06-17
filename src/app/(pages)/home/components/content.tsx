@@ -13,7 +13,7 @@ export function Content() {
    const { settings } = useSettingsStore();
 
    return (
-      <div className="mt-8 space-y-6">
+      <div className="mt-1 space-y-6">
          <BannerSection />
 
          <div className="space-y-6">
@@ -45,11 +45,11 @@ export function Content() {
                      Discord
                   </Link>
                </Button>
-               <Button asChild>
+               {/*<Button asChild>
                   <Link href={settings?.footer?.find(item => item.url === "https://paynow.gg/terms-of-use")?.url || "/pages/tos"} target="_blank">
                      Terms & Conditions
                   </Link>
-               </Button>
+               </Button>*/}
                {settings?.footer?.some(item => item.url === "https://paynow.gg/terms-of-use") && (
                   <Button asChild>
                      <Link href={'https://checkout.paynow.gg/subscriptions'} target="_blank">
@@ -58,7 +58,7 @@ export function Content() {
                   </Button>
                )}
                <Button asChild>
-                  <Link href={settings?.discord_url || "https://google.com"} target="_blank">
+                  <Link href="https://www.addstarmc.com/contact-us/" target="_blank">
                      Contact Us
                   </Link>
                </Button>
@@ -76,16 +76,16 @@ function BannerSection() {
    const cacheBuster = getCacheBuster();
 
    return (
-      <div className="grid items-start gap-6 md:grid-cols-2">
+      <div className="grid items-start gap-6 md:grid-cols-1">
          <div className="order-2 space-y-2 text-pretty rounded-md border border-accent-foreground/10 bg-accent p-4 text-center md:order-1">
             <h1 className="text-2xl font-bold text-primary md:text-3xl">
                {t('welcome').replace('MinestoreCMS', settings?.website_name || 'MinestoreCMS')}
             </h1>
             <p>{t('welcome-description')}</p>
          </div>
-         <div className="order-1 md:order-2">
+         {/*<div className="order-1 md:order-2">
             <Image
-               src={`${process.env.NEXT_PUBLIC_API_URL}/img/index-banner.png?${cacheBuster}`}
+               src={`${process.env.NEXT_PUBLIC_API_URL}/img/banner.png?${cacheBuster}`}
                alt="Banner"
                width={500}
                height={300}
@@ -94,7 +94,7 @@ function BannerSection() {
                   e.currentTarget.remove();
                }}
             />
+         </div>*/}
          </div>
-      </div>
    );
 }

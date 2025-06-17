@@ -7,17 +7,17 @@
                 {
                     "id": "main-color",
                     "name": "Main Color",
-                    "default": "#ff7300",
+                    "default": "#477eff",
                     "description": "Enter the main color used on your website.",
                     "type": "color",
-                    "value": "#ff7300"
+                    "value": "#477eff"
                 },
                 {
                     "id": "theme",
                     "name": "Theme",
                     "description": "Select the default theme for your website.",
                     "type": "select",
-                    "default": "system",
+                    "default": "dark",
                     "values": ["system", "light", "dark"],
                     "value": "dark"
                 },

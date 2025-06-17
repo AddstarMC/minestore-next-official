@@ -43,7 +43,7 @@ export function PaymentMethods() {
 
                <hr className="w-64" />
 
-               <div className="flex-row py-4">
+               {/*<div className="flex-row py-4">
                   <div className="w-32">
                      <Image
                         className="mr-auto h-[40px] w-28 object-contain"
@@ -58,7 +58,7 @@ export function PaymentMethods() {
                    </span>
                </div>
 
-               <hr className="w-64" />
+               <hr className="w-64" />*/}
 
                <div className="flex-row py-4">
                   <div className="w-32">
