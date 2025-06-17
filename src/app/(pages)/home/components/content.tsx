@@ -1,12 +1,12 @@
 'use client';
 
-import Image from 'next/image';
+//import Image from 'next/image';
 import { PaymentMethods } from './payment-methods';
 import { Button } from '@/components/ui/button';
 import Link from 'next/link';
 import { useTranslations } from 'next-intl';
 import { useSettingsStore } from '@/stores/settings';
-import { getCacheBuster } from '@helpers/cache-buster';
+//import { getCacheBuster } from '@helpers/cache-buster';
 
 export function Content() {
    const t = useTranslations('home');
@@ -73,7 +73,7 @@ export function Content() {
 function BannerSection() {
    const t = useTranslations('home');
    const { settings } = useSettingsStore();
-   const cacheBuster = getCacheBuster();
+   //const cacheBuster = getCacheBuster();
 
    return (
       <div className="grid items-start gap-6 md:grid-cols-1">
