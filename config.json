@@ -10,7 +10,7 @@
           "default": "#ff7300",
           "description": "Enter the main color used on your website.",
           "type": "color",
-          "value": "#ff7300"
+          "value": "#477eff"
         },
         {
           "id": "theme",
