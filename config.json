@@ -1,6 +1,9 @@
 {
-    "author": "TripleZone & MineStoreCMS",
-    "config": [
+  "author": "TripleZone & MineStoreCMS",
+  "config": [
+    {
+      "header": "General Settings",
+      "options": [
         {
             "header": "General Settings",
             "options": [
@@ -10,7 +13,7 @@
                     "default": "#477eff",
                     "description": "Enter the main color used on your website.",
                     "type": "color",
-                    "value": "#477eff"
+                    "value": "#ff7300"
                 },
                 {
                     "id": "theme",
@@ -49,5 +52,7 @@
                 }
             ]
         }
-    ]
+      ]
+    }
+  ]
 }
