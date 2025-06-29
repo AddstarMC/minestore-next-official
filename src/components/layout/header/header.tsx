@@ -6,9 +6,9 @@ import Image from 'next/image';
 import { TSettings } from '@/types/settings';
 import { HeroSection } from './sections/hero-section';
 import { Container } from '@/components/base/container/container';
-import { convertToLocalCurrency } from '@helpers/convert-to-local-currency';
+//import { convertToLocalCurrency } from '@helpers/convert-to-local-currency';
 import { getModifiedCacheBuster } from '@helpers/cache-buster';
-import { useCurrencyStore } from '@/stores/currency';
+//import { useCurrencyStore } from '@/stores/currency';
 import { useUserStore } from '@/stores/user';
 import Link from 'next/link';
 
@@ -105,14 +105,14 @@ export const Header: FC<HeaderProps> = ({ settings, particles }) => {
 };
 
 function DonationGoal({ goal }: { goal: TSettings['goals'] }) {
-    const { currency } = useCurrencyStore();
+    //const { currency } = useCurrencyStore();
 
     if (!goal.length) return null;
 
     const { current_amount, goal_amount, name } = goal[0];
 
-    const filled = convertToLocalCurrency(current_amount).toFixed(2);
-    const goalValue = convertToLocalCurrency(goal_amount).toFixed(2);
+    //const filled = convertToLocalCurrency(current_amount).toFixed(2);
+    //const goalValue = convertToLocalCurrency(goal_amount).toFixed(2);
 
     const percent = (current_amount / goal_amount) * 100;
 
