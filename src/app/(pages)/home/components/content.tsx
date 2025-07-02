@@ -16,8 +16,8 @@ export function Content() {
       <div className="mt-1 space-y-6">
          <BannerSection />
 
-         <div className="space-y-6">
-            <div className="grid gap-6 md:grid-cols-2">
+         <div className="space-y-8">
+            <div className="grid gap-8 md:grid-cols-2">
                <div className="space-y-2">
                   <div>
                      <h2 className="text-balance text-xl font-bold text-primary md:text-2xl">
@@ -65,7 +65,7 @@ export function Content() {
             </div>
          </div>
 
-         <PaymentMethods />
+         {/*<PaymentMethods />*/}
       </div>
    );
 }

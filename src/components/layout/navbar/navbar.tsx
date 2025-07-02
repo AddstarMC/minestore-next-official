@@ -16,7 +16,7 @@ type NavbarProps = {
 
 export const Navbar: FC<NavbarProps> = ({ settings }) => {
     return (
-        <nav className="z-20 h-[63px] w-full flex-row items-center justify-center bg-[url(/navbar.png)] px-9 md:mx-auto md:w-fit md:rounded-[10px]">
+        <nav className="z-20 h-[63px] w-full flex-row items-center justify-center bg-[url(/navbar.png)] px-9 md:mx-auto md:w-fit md:rounded-[10px] mt-4">
             <div className="hidden items-center md:flex">
                 <CurrencySection settings={settings} />
                 <Divider />

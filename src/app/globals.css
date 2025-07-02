@@ -51,7 +51,7 @@
         --foreground: var(--hue) 10% 97.5%;
 
         --muted: var(--hue) 41% 13%;
-        --muted-foreground: var(--hue) 10% 55%;
+        --muted-foreground: oklch(86.9% 0.022 252.894);
 
         --popover: var(--hue) 44% 7.5%;
         --popover-foreground: var(--hue) 10% 97.5%;
@@ -94,9 +94,7 @@ body {
     border-radius: 10px;
     -webkit-border-radius: 10px;
     border: 0px solid transparent;
-    box-shadow:
-        inset 0 0 2,
-        5px 2px rgba(0, 0, 0, 0.5);
+    box-shadow: inset 5px 2px rgba(0, 0, 0, 0.5);
 }
 
 ::-webkit-scrollbar-thumb {
