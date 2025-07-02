@@ -19,7 +19,7 @@ export const Alert: FC = () => {
     const { content, title, button_name, button_url } = details;
 
     return (
-        <div className="rounded-md bg-accent shadow-md" role="alert">
+        <div className="rounded-md bg-accent shadow-md mb-4" role="alert">
             <div className="flex items-center justify-between">
                 <div className="flex">
                     <div className="flex items-center justify-center rounded-bl-md rounded-tl-md bg-primary/15 py-2 px-6">

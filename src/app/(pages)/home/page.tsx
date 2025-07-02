@@ -13,7 +13,7 @@ export default async function Home() {
 
     return (
         <>
-            <div className='mb-4'>
+            <div className=''>
                 <Alert />
             </div>
             {settings?.is_featuredDeal ? <FeaturedDeals featuredDeals={featuredDeals} /> : null}
