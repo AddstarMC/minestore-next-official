@@ -13,12 +13,13 @@ export default async function Home() {
 
     return (
         <>
+            <div className='mb-4'>
+                <Alert />
+            </div>
             {settings?.is_featuredDeal ? <FeaturedDeals featuredDeals={featuredDeals} /> : null}
 
             <div className="flex-col rounded-[10px] bg-card">
                 <div className="p-4">
-                    <Alert />
-
                     <Content />
                 </div>
 

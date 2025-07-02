@@ -22,7 +22,7 @@ export const Alert: FC = () => {
         <div className="rounded-md bg-accent shadow-md" role="alert">
             <div className="flex items-center justify-between">
                 <div className="flex">
-                    <div className="flex items-center justify-center rounded-bl-md rounded-tl-md bg-accent-foreground/5 p-4">
+                    <div className="flex items-center justify-center rounded-bl-md rounded-tl-md bg-primary/15 py-2 px-6">
                         <svg
                             className="h-8 w-8 fill-current text-primary"
                             xmlns="http://www.w3.org/2000/svg"

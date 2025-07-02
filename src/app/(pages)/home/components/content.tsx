@@ -77,7 +77,7 @@ function BannerSection() {
 
    return (
       <div className="grid items-start gap-6 md:grid-cols-1">
-         <div className="order-2 space-y-2 text-pretty rounded-md border border-accent-foreground/10 bg-accent p-4 text-center md:order-1">
+         <div className="order-2 space-y-2 text-pretty rounded-md p-4 text-center md:order-1">
             <h1 className="text-2xl font-bold text-primary md:text-3xl">
                {t('welcome').replace('MinestoreCMS', settings?.website_name || 'MinestoreCMS')}
             </h1>

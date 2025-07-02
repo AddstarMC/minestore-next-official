@@ -28,7 +28,7 @@ export const LanguageSection: FC<LanguageSectionProps> = ({ settings }) => {
 
     return (
         <div className="space-x-4">
-            <span className="uppercase text-muted-foreground">{t('language')}</span>
+            <span className="uppercase text-white/90">{t('language')}</span>
 
             <DropdownMenu
                 onOpenChange={(open) => {

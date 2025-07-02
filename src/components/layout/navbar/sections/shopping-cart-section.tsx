@@ -41,7 +41,7 @@ export const ShoppingCartSection: FC = () => {
                     {t('cart')}
                 </Link>
                 {user ? (
-                    <div className="flex text-xs uppercase text-muted-foreground">
+                    <div className="flex text-xs uppercase text-white/90">
                         {isCartEmpty ? (
                             t('empty-cart')
                         ) : (
@@ -52,7 +52,7 @@ export const ShoppingCartSection: FC = () => {
                         )}
                     </div>
                 ) : (
-                    <span className="text-xs uppercase text-muted-foreground">
+                    <span className="text-xs uppercase text-white/90">
                         {t('not-logged')}
                     </span>
                 )}

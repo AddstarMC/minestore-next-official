@@ -59,7 +59,7 @@ export const Header: FC<HeaderProps> = ({ settings, particles }) => {
                 </div>
             </div>
 
-            <div className="relative">
+            <div className="relative pt-4">
                 <Navbar settings={settings} />
 
                 <HeroSection settings={settings} />
