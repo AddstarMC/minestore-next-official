@@ -23,7 +23,7 @@ type TProductListContainer = {
 };
 
 export default async function Page({ params }: { params: { name: string[] } }) {
-   const categoryPath = params.name.join('/');
+    const categoryPath = params.name.join('/');
 
     const response = await getCategoryDetails(categoryPath).catch((error) => {
         console.error('Error fetching category details:', error);
@@ -52,29 +52,32 @@ export default async function Page({ params }: { params: { name: string[] } }) {
     };
 
     return (
-        <div className="w-full flex-col rounded-[10px] bg-card">
-            <script
-                type="application/ld+json"
-                dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
-            />
+        <div>
+            <Alert />
+            <div className="w-full flex-col rounded-[10px] bg-card">
+                <script
+                    type="application/ld+json"
+                    dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+                />
 
-            <Suspense fallback={<SkeletonCategory />}>
-                <CategoryHeader category={category} subCategory={subCategory} />
+                <Suspense fallback={<SkeletonCategory />}>
+                    <CategoryHeader category={category} subCategory={subCategory} />
 
-                {isComparison ? (
-                    <Comparison
-                        categoryItems={items}
-                        category={category}
-                        subCategory={subCategory}
-                    />
-                ) : (
-                    <ProductListContainer
-                        items={items}
-                        category={category}
-                        subcategory={subCategory}
-                    />
-                )}
-            </Suspense>
+                    {isComparison ? (
+                        <Comparison
+                            categoryItems={items}
+                            category={category}
+                            subCategory={subCategory}
+                        />
+                    ) : (
+                        <ProductListContainer
+                            items={items}
+                            category={category}
+                            subcategory={subCategory}
+                        />
+                    )}
+                </Suspense>
+            </div>
         </div>
     );
 }
@@ -85,12 +88,10 @@ function CategoryHeader({ category, subCategory }: TCategoryHeader) {
 
     return (
         <div className="w-full flex-col p-4">
-            <Alert />
-
             <h1 className="mt-4 text-center text-[34px] text-primary">{title}</h1>
             <div
-                className="ql-editor prose max-w-fit w-full text-muted-foreground leading-tight
-                           [&>ul>li]:my-[3px] [&>p]:mb-[3px]"
+                className="ql-editor prose w-full max-w-fit leading-tight text-muted-foreground
+                           [&>p]:mb-[3px] [&>ul>li]:my-[3px]"
                 dangerouslySetInnerHTML={{ __html: description }}
             />
 
