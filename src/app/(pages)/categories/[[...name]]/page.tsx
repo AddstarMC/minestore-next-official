@@ -88,8 +88,9 @@ function CategoryHeader({ category, subCategory }: TCategoryHeader) {
             <Alert />
 
             <h1 className="mt-4 text-center text-[34px] text-primary">{title}</h1>
-            <span
-                className="text-center text-muted-foreground"
+            <div
+                className="ql-editor prose max-w-fit w-full text-muted-foreground leading-tight
+                           [&>ul>li]:my-[3px] [&>p]:mb-[3px]"
                 dangerouslySetInnerHTML={{ __html: description }}
             />
 
