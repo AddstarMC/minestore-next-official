@@ -19,7 +19,7 @@ export const ShoppingCartSection: FC = () => {
             <>
                 <ReactSVG src="/icons/shopping-cart.svg" className='text-white dark:text-accent-foreground' />
                 <div className="ml-4 flex-col">
-                    <span className="text-xs uppercase text-muted-foreground">
+                    <span className="text-xs uppercase text-white">
                         {t('not-logged')}
                     </span>
                 </div>
