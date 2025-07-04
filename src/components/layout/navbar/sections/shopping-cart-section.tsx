@@ -19,7 +19,7 @@ export const ShoppingCartSection: FC = () => {
             <>
                 <ReactSVG src="/icons/shopping-cart.svg" className='text-white dark:text-accent-foreground' />
                 <div className="ml-4 flex-col">
-                    <span className="text-xs uppercase text-muted-foreground">
+                    <span className="text-xs uppercase text-white">
                         {t('not-logged')}
                     </span>
                 </div>
@@ -41,7 +41,7 @@ export const ShoppingCartSection: FC = () => {
                     {t('cart')}
                 </Link>
                 {user ? (
-                    <div className="flex text-xs uppercase text-muted-foreground">
+                    <div className="flex text-xs uppercase text-white/90">
                         {isCartEmpty ? (
                             t('empty-cart')
                         ) : (
@@ -52,7 +52,7 @@ export const ShoppingCartSection: FC = () => {
                         )}
                     </div>
                 ) : (
-                    <span className="text-xs uppercase text-muted-foreground">
+                    <span className="text-xs uppercase text-white/90">
                         {t('not-logged')}
                     </span>
                 )}

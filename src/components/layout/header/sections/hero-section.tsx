@@ -76,26 +76,11 @@ export const HeroSection: FC<HeroSectionProps> = ({ settings }) => {
     const cacheBuster = getCacheBuster();
 
     return (
-        <div className="relative w-full flex-row items-center justify-center">
-            <div
-                onClick={handleCopyServerIP}
-                className="-mt-20 hidden cursor-pointer items-center gap-2 transition duration-300 hover:scale-110 lg:flex"
-            >
-                <ReactSVG className="h-12 w-12 text-primary" src="/icons/play.svg" />
-                <div className="ml-0.5 flex-col">
-                    <span className="text-lg font-bold text-white dark:text-accent-foreground">
-                        {settings.server.ip}
-                    </span>
-                    <span className="text-sm text-white/80 dark:text-foreground">
-                        {serverOnline} {t('players-online')}
-                    </span>
-                </div>
-            </div>
-
-            <div className="relative z-10 translate-y-12">
+        <div className="mt-8">
+            <div className="m-auto w-64 h-64">
                 <Link href="/">
                     <Image
-                        className="levitate mx-4 h-[338px] w-[381px]"
+                        className="mx-4 h-64 w-64"
                         src={`${process.env.NEXT_PUBLIC_API_URL}/img/logo.png?${cacheBuster}`}
                         width={381}
                         height={338}
@@ -104,20 +89,39 @@ export const HeroSection: FC<HeroSectionProps> = ({ settings }) => {
                 </Link>
             </div>
 
-            <Link
-                href={settings.discord_url}
-                className="-mt-20 hidden items-center transition duration-300 hover:scale-110 lg:flex"
-            >
-                <div className="ml-0.5 flex-col">
-                    <span className="text-lg font-bold text-white dark:text-accent-foreground">
-                        {t('discord-server')}
-                    </span>
-                    <span className="text-sm text-white/80 dark:text-foreground">
-                        {discordOnline} {t('members-online')}
-                    </span>
+            <div className="w-full flex-row items-center justify-center h-12 mt-4 mb-8">
+                <div
+                    onClick={handleCopyServerIP}
+                    className="hidden cursor-pointer items-center gap-2 transition duration-300 hover:scale-110 lg:flex"
+                >
+                    <ReactSVG className="h-12 h-auto w-12 text-primary" src="/icons/play.svg" />
+                    <div className="ml-0.5 flex-col">
+                        <span className="text-lg font-bold text-white dark:text-accent-foreground">
+                            {settings.server.ip}
+                        </span>
+                        <span className="text-sm text-white/80 dark:text-foreground">
+                            {serverOnline} {t('players-online')}
+                        </span>
+                    </div>
                 </div>
-                <ReactSVG className="h-12 w-12 text-primary" src="/icons/discord.svg" />
-            </Link>
+
+                <div className="w-[32rem]"></div>
+
+                <Link
+                    href={settings.discord_url}
+                    className="hidden items-center gap-2 transition duration-300 hover:scale-110 lg:flex"
+                >
+                    <div className="ml-0.5 flex-col">
+                        <span className="text-lg font-bold text-white dark:text-accent-foreground">
+                            {t('discord-server')}
+                        </span>
+                        <span className="text-sm text-white/80 dark:text-foreground">
+                            {discordOnline} {t('members-online')}
+                        </span>
+                    </div>
+                    <ReactSVG className="h-12 h-auto w-12 text-primary" src="/icons/discord.svg" />
+                </Link>
+            </div>
         </div>
     );
 };

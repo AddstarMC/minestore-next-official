@@ -27,7 +27,7 @@ export const CurrencySection: FC<CurrencySectionProps> = ({ settings }) => {
 
     return (
         <div className="space-x-4">
-            <span className="uppercase text-muted-foreground">{t('currency')}</span>
+            <span className="uppercase text-white/90">{t('currency')}</span>
 
             <DropdownMenu
                 onOpenChange={(open) => {

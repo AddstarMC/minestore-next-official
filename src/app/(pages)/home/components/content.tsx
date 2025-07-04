@@ -1,7 +1,7 @@
 'use client';
 
 //import Image from 'next/image';
-import { PaymentMethods } from './payment-methods';
+// import { PaymentMethods } from './payment-methods';
 import { Button } from '@/components/ui/button';
 import Link from 'next/link';
 import { useTranslations } from 'next-intl';
@@ -16,8 +16,8 @@ export function Content() {
       <div className="mt-1 space-y-6">
          <BannerSection />
 
-         <div className="space-y-6">
-            <div className="grid gap-6 md:grid-cols-2">
+         <div className="space-y-8">
+            <div className="grid gap-8 md:grid-cols-2">
                <div className="space-y-2">
                   <div>
                      <h2 className="text-balance text-xl font-bold text-primary md:text-2xl">
@@ -65,7 +65,7 @@ export function Content() {
             </div>
          </div>
 
-         <PaymentMethods />
+         {/*<PaymentMethods />*/}
       </div>
    );
 }
@@ -77,7 +77,7 @@ function BannerSection() {
 
    return (
       <div className="grid items-start gap-6 md:grid-cols-1">
-         <div className="order-2 space-y-2 text-pretty rounded-md border border-accent-foreground/10 bg-accent p-4 text-center md:order-1">
+         <div className="order-2 space-y-2 text-pretty rounded-md p-4 text-center md:order-1">
             <h1 className="text-2xl font-bold text-primary md:text-3xl">
                {t('welcome').replace('MinestoreCMS', settings?.website_name || 'MinestoreCMS')}
             </h1>
