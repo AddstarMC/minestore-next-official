@@ -20,7 +20,7 @@ export const CategoryMenu: FC<CategoryMenuProps> = ({ categories }) => {
     return (
         <aside className="h-fit rounded-[10px] bg-card p-6">
             <ul className="space-y-8">
-                <MenuItem name={t('home')} image="/icons/home.svg" url="/" />
+                <MenuItem name={t('home')} image="/icons/category_home.png" url="/" />
 
                 {categories.map((category) => (
                     <MenuItem
