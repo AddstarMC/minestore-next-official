@@ -128,10 +128,6 @@ function DonationGoal({ goal }: { goal: TSettings['goals'] }) {
                         <span className="sr-only">
                         </span>
                </p>
-               <p className="font-bold text-white dark:text-accent-foreground">
-                    <span className="sr-only">Progress</span>
-                    {percent.toFixed(2)}%
-               </p>
             </div>
             <p className="font-bold text-white dark:text-accent-foreground">
                <span className="sr-only">Progress</span>
