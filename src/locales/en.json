@@ -38,7 +38,7 @@
     "recent-purchases": "Recent Payments",
     "home": {
         "welcome": "Welcome to the official MinestoreCMS Webstore!",
-        "welcome-description": "To begin shopping, please select a category from the sidebar. Please note that ranks cost a one-time fee and are permanent.",
+        "welcome-description": "To begin shopping, please select a category from the sidebar.",
         "featured-packages": "FEATURED PACKAGES",
         "recent-purchases": "Recent Purchases",
         "gift-card": "Gift Card",
