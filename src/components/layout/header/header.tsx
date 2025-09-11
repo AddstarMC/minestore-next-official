@@ -68,7 +68,7 @@ export const Header: FC<HeaderProps> = ({ settings, particles }) => {
             <Container>
                 <div className="relative flex h-[90px] sm:h-[110px] items-center bg-primary/20 px-3 sm:px-5">
                     <div className="absolute inset-0 -z-10 size-full rounded-md bg-primary"></div>
-                    <div className="absolute inset-0 -z-10 size-full rounded-md bg-[url(/bg.jpg)] bg-cover opacity-20"></div>
+                    <div className="absolute inset-0 -z-10 size-full rounded-md bg-[url(/survival.jpg)] bg-cover opacity-20"></div>
 
                     <DonationGoal goal={settings.goals} />
 
