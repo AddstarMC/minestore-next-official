@@ -2,8 +2,8 @@
 
 import { FC } from 'react';
 import { TSettings } from '@/types/settings';
-import { convertToLocalCurrency } from '@helpers/convert-to-local-currency';
-import { useCurrencyStore } from '@/stores/currency';
+//import { convertToLocalCurrency } from '@helpers/convert-to-local-currency';
+//import { useCurrencyStore } from '@/stores/currency';
 import { useUserStore } from '@/stores/user';
 import Link from 'next/link';
 import Image from 'next/image';
