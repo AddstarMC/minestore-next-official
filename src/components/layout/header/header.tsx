@@ -124,13 +124,6 @@ function DonationGoal({ goal }: { goal: TSettings['goals'] }) {
                         <span className="sr-only">Donation Goal</span>
                         {name}
                     </p>
-                    <p className="text-sm text-accent-foreground/80 sm:text-base">
-                        <span className="sr-only">
-                            The goal is {name} and the current amount is {filled} out of {goalValue}{' '}
-                            {currency?.name || 'USD'}
-                        </span>
-                        {filled} / {goalValue} {currency?.name || ''}
-                    </p>
                 </div>
                 <p className="font-bold text-white dark:text-accent-foreground">
                     <span className="sr-only">Progress</span>

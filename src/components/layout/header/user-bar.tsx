@@ -70,10 +70,6 @@ function DonationGoal({ goal }: { goal: TSettings['goals'] }) {
                         <span className="sr-only">Donation Goal</span>
                         {name}
                     </p>
-                    <p className="text-sm text-accent-foreground/80 sm:text-base">
-                        <span className="sr-only">
-                        </span>
-                    </p>
                 </div>
                 <p className="font-bold text-white dark:text-accent-foreground">
                     <span className="sr-only">Progress</span>
