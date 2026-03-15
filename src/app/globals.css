@@ -138,6 +138,28 @@ body {
     animation: 3.5s rotate linear infinite;
 }
 
+.featured-border-animated {
+    border-color: transparent !important;
+    background-clip: padding-box !important;
+}
+.featured-border-animated::after {
+    content: '';
+    position: absolute;
+    inset: -2px;
+    border-radius: inherit;
+    background: linear-gradient(var(--angle), hsl(var(--primary) / 0.15), hsl(var(--primary)));
+    z-index: -1;
+    animation: 3.5s rotate linear infinite;
+}
+
+.featured-tier-animated-border {
+    border: 2px solid transparent;
+    background:
+        linear-gradient(hsl(var(--card) / 0.8), hsl(var(--card) / 0.8)) padding-box,
+        linear-gradient(var(--angle), hsl(var(--primary) / 0.12), hsl(var(--primary) / 0.5)) border-box;
+    animation: 3.5s rotate linear infinite;
+}
+
 @keyframes rotate {
     to {
         --angle: 360deg;

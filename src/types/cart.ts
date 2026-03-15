@@ -21,6 +21,7 @@ export type TCart = {
         price: number;
         referral: null | string;
         referral_code: string;
+        referral_attribution_days?: number | null;
         tax: number;
         updated_at: string;
         user_id: number;

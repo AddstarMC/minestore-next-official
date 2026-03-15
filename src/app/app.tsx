@@ -8,6 +8,7 @@ import { getDictionary } from '@/core/i18n';
 import { Container } from '@/components/base/container/container';
 import { Header } from '@layout/header/header';
 import { Init } from '@/core/init/init';
+import { ReferralCapture } from '@/core/referral/referral-capture';
 import { Footer } from '@layout/footer/footer';
 import { Sidebar } from '@layout/sidebar/sidebar';
 import { promises as fs } from 'fs';
@@ -53,6 +54,7 @@ export const App: FC<PropsWithChildren> = async ({ children }) => {
                             </Container>
                             <Footer settings={settings} />
                             <Init settings={settings} />
+                            <ReferralCapture />
                             <AnalyticsTracker />
                             <Toaster position="top-right" reverseOrder={false} />
                         </Suspense>

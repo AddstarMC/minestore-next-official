@@ -2,6 +2,7 @@ export type TItemTier = {
     quantity: number;
     price: number;
     discount: number;
+    featured?: boolean;
 };
 
 export type TItem = {

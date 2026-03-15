@@ -135,7 +135,7 @@ export const CartItem: FC<CartItemProps> = ({ item }) => {
                         <div>
                             <button
                                 aria-label="Decrease quantity"
-                                hidden={!!item.is_subs}
+                                hidden={!!item.is_subs || !!item.tier_quantity}
                                 className="h-6 w-6 rounded text-xl font-bold leading-6 text-primary transition disabled:cursor-not-allowed disabled:opacity-50"
                                 disabled={quantity === 1 || loading}
                                 onClick={() => {
@@ -152,7 +152,7 @@ export const CartItem: FC<CartItemProps> = ({ item }) => {
                         <div>
                             <button
                                 aria-label="Increase quantity"
-                                hidden={!!item.is_subs}
+                                hidden={!!item.is_subs || !!item.tier_quantity}
                                 className="h-4 w-4 rounded text-xl font-bold leading-6 text-primary transition disabled:cursor-not-allowed disabled:opacity-50 md:h-8 md:w-8"
                                 disabled={loading}
                                 onClick={() => handleQuantity(item.cid, quantity + 1)}

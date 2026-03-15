@@ -10,8 +10,13 @@ export function StackedCategory({ items }: StackedCategoryProps) {
 
     if (!stackedItems.length) {
         return (
-            <div className="flex items-center justify-center p-8 text-muted-foreground">
-                No items available in this category
+            <div className="flex flex-col items-center justify-center gap-2 p-8 text-center text-muted-foreground">
+                <span>No items available in this category.</span>
+                {items.length > 0 && (
+                    <span className="text-xs">
+                        {items.length} item{items.length !== 1 ? 's' : ''} exist but have no tiers configured.
+                    </span>
+                )}
             </div>
         );
     }
