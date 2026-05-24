@@ -1,5 +1,6 @@
 import Image from 'next/image';
 import { StaffHeading } from './heading';
+import type { GameType } from '@/lib/avatar';
 
 type User = {
     username: string;
@@ -27,8 +28,35 @@ async function getStaffMembers() {
     return res.json() as Promise<ResponseType>;
 }
 
+async function getGameType(): Promise<GameType> {
+    try {
+        const url = `${process.env.NEXT_PUBLIC_API_URL}/api/settings/get`;
+        const res = await fetch(url, { next: { revalidate: 60 } });
+        const data = await res.json();
+
+        if (data?.game_type) {
+            return data.game_type as GameType;
+        }
+
+        const candidates: Array<string | undefined> = [
+            data?.top?.avatar,
+            ...((data?.recentDonators ?? []).map((d: { avatar?: string }) => d.avatar)),
+        ];
+        if (candidates.some((url) => url?.includes('hyvatar.io'))) {
+            return 'hytale';
+        }
+
+        return 'minecraft';
+    } catch {
+        return 'minecraft';
+    }
+}
+
 export default async function Page() {
-    const staffMembers = await getStaffMembers();
+    const [staffMembers, gameType] = await Promise.all([
+        getStaffMembers(),
+        getGameType(),
+    ]);
 
     return (
         <div className="flex-col rounded-[10px] bg-card p-6">
@@ -36,14 +64,14 @@ export default async function Page() {
 
             <div className="grid gap-4">
                 {Object.entries(staffMembers).map(([role, users]) => (
-                    <StaffCategory key={role} role={role} users={users!} />
+                    <StaffCategory key={role} role={role} users={users!} gameType={gameType} />
                 ))}
             </div>
         </div>
     );
 }
 
-function StaffCategory({ role, users }: { role: string; users: User[] }) {
+function StaffCategory({ role, users, gameType }: { role: string; users: User[]; gameType: GameType }) {
     return (
         <div>
             <h2 className="text-2xl font-bold text-accent-foreground">{role}</h2>
@@ -53,6 +81,7 @@ function StaffCategory({ role, users }: { role: string; users: User[] }) {
                         key={user.username}
                         username={user.username}
                         prefix={user.prefix}
+                        gameType={gameType}
                     />
                 ))}
             </div>
@@ -60,11 +89,16 @@ function StaffCategory({ role, users }: { role: string; users: User[] }) {
     );
 }
 
-function StaffMember({ username, prefix }: User) {
+function StaffMember({ username, prefix, gameType }: User & { gameType: GameType }) {
+    const isHytale = gameType === 'hytale';
+    const src = isHytale
+        ? `https://hyvatar.io/render/${encodeURIComponent(username)}?size=60`
+        : `https://minotar.net/avatar/${username}/64`;
+
     return (
         <div className="flex items-center gap-4 rounded-md border border-accent-foreground/10 bg-accent p-4">
             <Image
-                src={`https://minotar.net/avatar/${username}/64`}
+                src={src}
                 alt={username}
                 width={60}
                 height={60}

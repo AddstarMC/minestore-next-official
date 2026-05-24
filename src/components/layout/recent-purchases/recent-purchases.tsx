@@ -2,6 +2,7 @@
 
 import { DescriptionTooltip } from '@/app/(pages)/checkout/components/cart-item/item-description-tooltip';
 import { useSettingsStore } from '@/stores/settings';
+import { useGameType } from '@/hooks/use-game-type';
 import { joinClasses } from '@helpers/join-classes';
 import Image from 'next/image';
 import Link from 'next/link';
@@ -54,11 +55,17 @@ export const RecentPurchases = ({
 };
 
 function Donor({ username, avatar }: { username: string; avatar: string }) {
+    const gameType = useGameType();
+    const src =
+        gameType === 'hytale'
+            ? `https://hyvatar.io/render/${encodeURIComponent(username)}?size=75`
+            : avatar;
+
     return (
         <DescriptionTooltip description={username} html={false}>
             <DonorProfileLink username={username}>
                 <Image
-                    src={avatar}
+                    src={src}
                     alt={username}
                     width={60}
                     height={60}

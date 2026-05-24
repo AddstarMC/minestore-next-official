@@ -6,11 +6,12 @@ import { zodResolver } from '@hookform/resolvers/zod';
 import { FormProvider, useForm } from 'react-hook-form';
 
 import { useCartStore } from '@/stores/cart';
-import { PaymentFormValues, defaultValues, paymentFormSchema } from './form-schema';
+import { PaymentFormValues, buildPaymentFormSchema, defaultValues } from './form-schema';
 import { useCurrencyStore } from '@/stores/currency';
+import { useSettingsStore } from '@/stores/settings';
 import { UserDetailsForm } from './user-details-form';
 import { PaymentMethodForm } from './payment-method-form';
-import { useState } from 'react';
+import { useState, useMemo } from 'react';
 import { PaymentFormSubmit } from './payment-form-submit';
 import { loadScript } from '@/lib/utils';
 import { notify } from '@/core/notifications';
@@ -22,12 +23,19 @@ const { checkout } = getEndpoints(fetcher);
 export function PaymentForm() {
     const { items } = useCartStore();
     const { currency } = useCurrencyStore();
+    const { settings } = useSettingsStore();
 
     const [showQrModal, setShowQrModal] = useState(false);
     const [loading, setLoading] = useState(false);
 
+    const dataCollectionSchema = useMemo(
+        () => buildPaymentFormSchema(settings?.data_collection),
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+        [settings?.data_collection]
+    );
+
     const form = useForm<PaymentFormValues>({
-        resolver: zodResolver(paymentFormSchema),
+        resolver: zodResolver(dataCollectionSchema),
         defaultValues,
         mode: 'onSubmit'
     });
@@ -67,6 +75,7 @@ export function PaymentForm() {
                 currency: currency?.name || 'USD',
                 paymentMethod: paymentMethod || 'PayPal',
                 details: data.details,
+                custom: data.custom,
                 termsAndConditions: data.termsAndConditions,
                 privacyPolicy: data.privacyPolicy,
                 discordId: discordId || null

@@ -7,6 +7,7 @@ import Image from 'next/image';
 import { TSettings } from '@/types/settings';
 import { Crown, Rocket, Pickaxe } from 'lucide-react';
 import Link from 'next/link';
+import { useGameType } from '@/hooks/use-game-type';
 
 const PatronIcon = () => (
    <Pickaxe
@@ -41,6 +42,11 @@ type ExtraWidgetProps = {
 export const ExtraWidget: FC<ExtraWidgetProps> = ({ settings }) => {
    const t = useTranslations();
    const { username, avatar } = settings?.top || {};
+   const gameType = useGameType();
+   const topAvatar =
+      gameType === 'hytale' && username
+         ? `https://hyvatar.io/render/full/${encodeURIComponent(username)}?size=160`
+         : avatar || '/media/modules/no-top-donor.webp';
 
    return (
       <>
@@ -52,7 +58,7 @@ export const ExtraWidget: FC<ExtraWidgetProps> = ({ settings }) => {
             <div className="my-4 flex items-start justify-center">
                <div className="z-0 -mb-12 overflow-hidden">
                   <Image
-                     src={avatar || '/media/modules/no-top-donor.webp'}
+                     src={topAvatar}
                      alt="Avatar"
                      width={120}
                      height={160}

@@ -2,8 +2,27 @@ import { TCurrency } from './currency';
 
 type AuthType = 'username' | 'ingame' | 'register';
 
+export type GameType = 'minecraft' | 'hytale';
+
+export type TDataCollectionField = { enabled: boolean; required: boolean };
+
+export type TDataCollection = {
+    fields: {
+        fullname: TDataCollectionField;
+        email: TDataCollectionField;
+        address1: TDataCollectionField;
+        address2: TDataCollectionField;
+        city: TDataCollectionField;
+        region: TDataCollectionField;
+        country: TDataCollectionField;
+        zipcode: TDataCollectionField;
+    };
+    custom: Array<{ id: string; label: string; required: boolean }>;
+};
+
 export type TSettings = {
     auth_type: AuthType;
+    game_type: GameType;
     guest_mode_enabled: boolean;
     header: Array<{
         id: number;
@@ -48,6 +67,7 @@ export type TSettings = {
         description?: string;
     }>;
     details: number | boolean;
+    data_collection: TDataCollection;
     content: string;
     goals: Array<{
         name: string;

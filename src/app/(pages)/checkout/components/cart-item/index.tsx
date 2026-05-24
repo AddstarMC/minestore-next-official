@@ -105,6 +105,15 @@ export const CartItem: FC<CartItemProps> = ({ item }) => {
                             </span>
                         )}
                     </div>
+                    {!!item.incremental_breakdown?.length && (
+                        <div className="mt-1 text-xs text-muted-foreground">
+                            {item.incremental_breakdown.map(u => u.price.toFixed(2)).join(' + ')}
+                            {' = '}
+                            {item.incremental_breakdown
+                                .reduce((sum, u) => sum + u.price, 0)
+                                .toFixed(2)}
+                        </div>
+                    )}
                     {item.gift && (
                         <div className="mt-1 flex flex-wrap items-center gap-1 text-xs md:text-sm text-muted-foreground">
                             <Gift className="h-4 w-4 md:h-5 md:w-5" />
@@ -135,7 +144,7 @@ export const CartItem: FC<CartItemProps> = ({ item }) => {
                         <div>
                             <button
                                 aria-label="Decrease quantity"
-                                hidden={!!item.is_subs || !!item.tier_quantity}
+                                hidden={!!item.is_subs || !!item.tier_quantity || !!item.incremental_quantity}
                                 className="h-6 w-6 rounded text-xl font-bold leading-6 text-primary transition disabled:cursor-not-allowed disabled:opacity-50"
                                 disabled={quantity === 1 || loading}
                                 onClick={() => {
@@ -152,7 +161,7 @@ export const CartItem: FC<CartItemProps> = ({ item }) => {
                         <div>
                             <button
                                 aria-label="Increase quantity"
-                                hidden={!!item.is_subs || !!item.tier_quantity}
+                                hidden={!!item.is_subs || !!item.tier_quantity || !!item.incremental_quantity}
                                 className="h-4 w-4 rounded text-xl font-bold leading-6 text-primary transition disabled:cursor-not-allowed disabled:opacity-50 md:h-8 md:w-8"
                                 disabled={loading}
                                 onClick={() => handleQuantity(item.cid, quantity + 1)}

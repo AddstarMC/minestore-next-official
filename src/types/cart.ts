@@ -56,6 +56,8 @@ export type TCart = {
         is_subs: number;
         is_subs_only: number;
         gift?: CartGiftItem;
+        incremental_quantity?: number | null;
+        incremental_breakdown?: { step_index: number; price: number }[] | null;
     }>;
 };
 

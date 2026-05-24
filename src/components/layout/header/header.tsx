@@ -10,6 +10,7 @@ import { convertToLocalCurrency } from '@helpers/convert-to-local-currency';
 import { getModifiedCacheBuster } from '@helpers/cache-buster';
 import { useCurrencyStore } from '@/stores/currency';
 import { useUserStore } from '@/stores/user';
+import { buildAvatarUrl, GameType } from '@/lib/avatar';
 import Link from 'next/link';
 
 import './Header.css';
@@ -24,6 +25,10 @@ type HeaderProps = {
 export const Header: FC<HeaderProps> = ({ settings, particles }) => {
     const { user } = useUserStore();
     const cacheBuster = getModifiedCacheBuster(5);
+    const isHytale =
+        (settings.game_type as GameType) === 'hytale' ||
+        (user?.avatar ?? '').includes('hyvatar.io');
+    const hytaleAvatar = user ? buildAvatarUrl('hytale', 'head', user.username, 270) : '';
 
     return (
         <header className="relative">
@@ -85,17 +90,31 @@ export const Header: FC<HeaderProps> = ({ settings, particles }) => {
                                )}
                             </div>
 
-                            <div className="relative top-[-45px] hidden h-[200px] overflow-hidden md:block">
-                                <Link href="/profile">
-                                    <Image
-                                        src={user.avatar || ''}
-                                        alt="Avatar"
-                                        className="h-[270px] w-[111px] -scale-x-100"
-                                        width={111}
-                                        height={270}
-                                    />
-                                </Link>
-                            </div>
+                            {isHytale ? (
+                                <div className="relative top-[-20px] hidden h-[150px] overflow-hidden md:block">
+                                    <Link href="/profile">
+                                        <Image
+                                            src={hytaleAvatar}
+                                            alt="Avatar"
+                                            className="h-[150px] w-[150px]"
+                                            width={150}
+                                            height={150}
+                                        />
+                                    </Link>
+                                </div>
+                            ) : (
+                                <div className="relative top-[-45px] hidden h-[200px] overflow-hidden md:block">
+                                    <Link href="/profile">
+                                        <Image
+                                            src={user.avatar || ''}
+                                            alt="Avatar"
+                                            className="h-[270px] w-[111px] -scale-x-100"
+                                            width={111}
+                                            height={270}
+                                        />
+                                    </Link>
+                                </div>
+                            )}
                         </>
                     )}
                 </div>
