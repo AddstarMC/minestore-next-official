@@ -1,6 +1,7 @@
-import { setCookie, deleteCookie, getCookie } from 'cookies-next';
+import { setCookie, getCookie } from 'cookies-next';
 import { getEndpoints } from '@/api';
 import { fetcher } from '@/api/client/fetcher';
+import { logoutAction } from '@/app/actions/logout';
 
 import { useRouter } from 'next/navigation';
 import { useUserStore } from '@/stores/user';
@@ -71,17 +72,10 @@ export const useUser = () => {
         }
     };
 
-    const logout = () => {
-        deleteCookie('token');
-        deleteCookie('lastCategoryClicked');
-        // Deleting Discord cookies
-        deleteCookie('discord_linked');
-        deleteCookie('discord_username');
-        deleteCookie('discord_id');
+    const logout = async () => {
         setUser(undefined);
         clearCart();
-        router.push('/');
-        router.refresh();
+        await logoutAction();
     };
 
    const loginClassic = useCallback(async (username: string, password: string) => {

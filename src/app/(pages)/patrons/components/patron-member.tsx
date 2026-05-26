@@ -3,6 +3,7 @@
 import { useState } from 'react';
 import Image from 'next/image';
 import { useTranslations } from 'next-intl';
+import { useGameType } from '@/hooks/use-game-type';
 
 export default function PatronMember({
                                         username,
@@ -15,7 +16,15 @@ export default function PatronMember({
    amount?: number;
    currencyCode?: string;
 }) {
-   const [imgSrc, setImgSrc] = useState(`https://minotar.net/avatar/${username}/100.png`);
+   const gameType = useGameType();
+   const isHytale = gameType === 'hytale';
+   const initialSrc = isHytale
+      ? `https://hyvatar.io/render/${encodeURIComponent(username)}?size=100`
+      : `https://minotar.net/avatar/${username}/100.png`;
+   const fallbackSrc = isHytale
+      ? `https://hyvatar.io/render/NPC?size=100`
+      : 'https://minotar.net/avatar/test/100.png';
+   const [imgSrc, setImgSrc] = useState(initialSrc);
    const t = useTranslations('patrons');
 
    let bgColorClass = 'bg-accent';
@@ -35,7 +44,7 @@ export default function PatronMember({
             height={100}
             quality={100}
             className="rounded-md mb-4"
-            onError={() => setImgSrc('https://minotar.net/avatar/test/100.png')}
+            onError={() => setImgSrc(fallbackSrc)}
          />
          {amount !== undefined && currencyCode && rank && rank <= 3 && (
             <p className="text-sm font-semibold text-gray-200">

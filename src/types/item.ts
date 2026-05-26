@@ -2,6 +2,7 @@ export type TItemTier = {
     quantity: number;
     price: number;
     discount: number;
+    featured?: boolean;
 };
 
 export type TItem = {
@@ -41,5 +42,14 @@ export type TItem = {
     // Stacked tiers support
     stacked_tiers?: {
         tiers: TItemTier[];
+    } | null;
+
+    // Incremental pricing support
+    incremental_pricing?: {
+        enabled: boolean;
+        period_value: number;
+        period_unit: number;
+        steps: { price: number; discount: number }[];
+        next_price?: number;
     } | null;
 };

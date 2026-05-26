@@ -33,7 +33,11 @@ export default async function Page({ params }: { params: Promise<{ name: string[
     });
 
     if (!response) {
-        return <></>;
+        return (
+            <div className="flex w-full items-center justify-center p-12 text-muted-foreground">
+                Category not found or failed to load.
+            </div>
+        );
     }
 
     const { category, items, subcategories } = response;

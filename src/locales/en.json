@@ -114,6 +114,8 @@
         "redeemed-referral": "Redeemed Referral",
         "referral-code-invalid": "Invalid referral code!",
         "referral-code-already-redeemed": "Referral code already redeemed!",
+        "referral-attribution-window": "Valid for {days} days",
+        "referral-attribution-lifetime": "Lifetime attribution",
         "payment-method": "Payment method",
         "privacy-statement": "Privacy Statement",
         "privacy-statement-description": "All payments are final and non-refundable. Attempting a chargeback or opening a PayPal dispute will result in permanent and irreversible banishment from all of our servers, and other minecraft stores.",

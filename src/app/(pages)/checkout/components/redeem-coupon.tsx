@@ -142,7 +142,7 @@ function RedeemedCouponList() {
     const t = useTranslations('checkout');
     const { cart, setCart } = useCartStore();
 
-    const isCouponApplied = cart?.coupon_value || cart?.gift_code;
+    const isCouponApplied = !!(cart?.coupon_code || cart?.coupon_value || cart?.gift_code);
 
     const handleRemoveCoupon = async () => {
         try {
@@ -170,11 +170,11 @@ function RedeemedCouponList() {
         <div className="flex-col">
             <p className="font-bold text-accent-foreground">{t('coupons-redeemed')}</p>
             <div className="mt-2 flex gap-2">
-                {cart?.coupon_value && (
+                {cart?.coupon_code && (
                     <RedeemedCoupon
                         code={cart.coupon_code}
                         removeCode={handleRemoveCoupon}
-                        amount={cart.coupon_value}
+                        amount={cart.coupon_value ?? 0}
                         coupon_type={cart.coupon_type}
                     />
                 )}

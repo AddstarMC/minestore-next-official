@@ -1,44 +1,62 @@
 import { z } from 'zod';
+import { TDataCollection } from '@/types/settings';
 
-const detailsSchema = z.object({
-    fullname: z.string().min(2, {
-        message: 'Full name must be at least 2 characters.'
-    }),
-    email: z.string().email({
-        message: 'Please enter a valid email.'
-    }),
-    address1: z.string().min(2, {
-        message: 'Address must be at least 2 characters.'
-    }),
-    address2: z.string().optional(),
-    city: z.string().min(2, {
-        message: 'City must be at least 2 characters.'
-    }),
-    region: z.string().min(1, {
-        message: 'Region must be at least 2 characters.'
-    }),
-    country: z.string().min(1, {
-        message: 'Select a country.'
-    }),
-    zipcode: z.string().min(1, {
-        message: 'Zipcode code must be at least 2 characters.'
-    })
-});
+const BUILTIN: Array<keyof TDataCollection['fields']> = [
+    'fullname',
+    'email',
+    'address1',
+    'address2',
+    'city',
+    'region',
+    'country',
+    'zipcode'
+];
 
-export const paymentFormSchema = z.object({
-    details: z.optional(detailsSchema),
-    termsAndConditions: z.literal(true, {
-        errorMap: () => ({ message: 'You must accept Terms and Conditions' })
-    }),
-    privacyPolicy: z.literal(true, {
-        errorMap: () => ({ message: 'You must accept Privacy Policy' })
-    }),
-    paymentMethod: z.string().min(1, {
-        message: 'Select a payment method.'
-    })
-});
+export const buildPaymentFormSchema = (dc?: TDataCollection) => {
+    const detailsShape: Record<string, z.ZodTypeAny> = {};
 
-export type PaymentFormValues = z.infer<typeof paymentFormSchema>;
+    if (dc) {
+        for (const key of BUILTIN) {
+            const fc = dc.fields[key];
+            if (!fc?.enabled) continue;
+
+            if (key === 'email') {
+                detailsShape[key] = fc.required
+                    ? z.string().email({ message: 'Please enter a valid email.' })
+                    : z
+                          .string()
+                          .email({ message: 'Please enter a valid email.' })
+                          .or(z.literal(''))
+                          .optional();
+            } else {
+                detailsShape[key] = fc.required
+                    ? z.string().min(1, { message: 'This field is required.' })
+                    : z.string().optional();
+            }
+        }
+    }
+
+    const customShape: Record<string, z.ZodTypeAny> = {};
+    for (const cf of dc?.custom ?? []) {
+        customShape[cf.id] = cf.required
+            ? z.string().min(1, { message: 'This field is required.' })
+            : z.string().default('');
+    }
+
+    return z.object({
+        details: z.object(detailsShape).optional(),
+        custom: z.object(customShape).optional(),
+        termsAndConditions: z.literal(true, {
+            errorMap: () => ({ message: 'You must accept Terms and Conditions' })
+        }),
+        privacyPolicy: z.literal(true, {
+            errorMap: () => ({ message: 'You must accept Privacy Policy' })
+        }),
+        paymentMethod: z.string().min(1, { message: 'Select a payment method.' })
+    });
+};
+
+export type PaymentFormValues = z.infer<ReturnType<typeof buildPaymentFormSchema>>;
 
 export const defaultValues: Partial<PaymentFormValues> = {
     paymentMethod: ''

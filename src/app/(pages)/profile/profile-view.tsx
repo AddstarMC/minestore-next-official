@@ -6,6 +6,7 @@ import { TProfile } from '@/types/profile';
 import { Card } from '@layout/card/card';
 import Image from 'next/image';
 import { useTranslations } from 'next-intl';
+import { useGameType } from '@/hooks/use-game-type';
 
 type ProfileViewProps = {
    profile: TProfile;
@@ -23,6 +24,8 @@ const renderDisplayText = (content: string) => {
 
 export const ProfileView: FC<ProfileViewProps> = ({ profile }) => {
    const t = useTranslations('profile');
+   const gameType = useGameType();
+   const isHytale = gameType === 'hytale';
 
    return (
       <div className="flex-col rounded-[10px] bg-card p-6">
@@ -34,13 +37,23 @@ export const ProfileView: FC<ProfileViewProps> = ({ profile }) => {
 
          <div className="mt-8 flex-row items-start">
             <div className="w-1/2 flex-col items-center">
-               <Image
-                  src={`https://mc-heads.net/body/${profile.username}`}
-                  height={475}
-                  width={198}
-                  alt={profile.username}
-                  quality={100}
-               />
+               {isHytale ? (
+                  <Image
+                     src={`https://hyvatar.io/render/full/${encodeURIComponent(profile.username)}?size=350`}
+                     alt={profile.username}
+                     width={350}
+                     height={350}
+                     quality={100}
+                  />
+               ) : (
+                  <Image
+                     src={`https://mc-heads.net/body/${profile.username}`}
+                     height={475}
+                     width={198}
+                     alt={profile.username}
+                     quality={100}
+                  />
+               )}
                <div className="mt-4 rounded bg-accent px-4 text-xl font-bold leading-10 text-accent-foreground">
                   {renderDisplayText(profile.displayname)}
                   {profile.display_group !== 0 && profile.display_group && (

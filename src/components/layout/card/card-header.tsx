@@ -18,6 +18,9 @@ export function CardHeader({ item, direction }: CardHeaderProps) {
     const price = item.is_virtual_currency_only ? item.virtual_price || 0 : item.price;
     const isPriceVirtual = item.is_virtual_currency_only;
 
+    const incr = item.incremental_pricing;
+    const nextPrice = incr?.enabled ? (incr.next_price ?? incr.steps?.[0]?.price) : undefined;
+
     const cardHeaderClasses = joinClasses(
         'gap-4',
         direction === 'col' && 'grid mt-auto',
@@ -46,6 +49,15 @@ export function CardHeader({ item, direction }: CardHeaderProps) {
                     isVirtual={isPriceVirtual}
                     className={`flex items-center gap-2 text-base font-bold ${direction === 'col' ? 'justify-center' : ''}`}
                 />
+                {incr?.enabled && (
+                    <p
+                        className={`mt-1 text-xs text-muted-foreground ${direction === 'col' ? 'text-center' : 'text-center md:text-start'}`}
+                    >
+                        {nextPrice !== undefined
+                            ? `Your next price: ${nextPrice.toFixed(2)}`
+                            : 'Price increases on repeat purchase'}
+                    </p>
+                )}
             </div>
         </div>
     );

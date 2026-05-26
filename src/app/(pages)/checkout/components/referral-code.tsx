@@ -149,6 +149,12 @@ function RedeemedCouponList() {
 
     if (!isReferralApplied) return null;
 
+    const attributionDays = cart?.referral_attribution_days;
+    const attributionLabel =
+        attributionDays != null && attributionDays > 0
+            ? t('referral-attribution-window', { days: attributionDays })
+            : t('referral-attribution-lifetime');
+
     return (
         <div className="flex-col">
             <p className="font-bold text-accent-foreground">{t('redeemed-referral')}</p>
@@ -157,9 +163,12 @@ function RedeemedCouponList() {
                     variant="secondary"
                     className="flex w-max items-center justify-between gap-4 rounded-md p-2"
                 >
-                    <div className="flex items-center gap-2">
-                        <Tags size={30} className="scale-x-[-1] text-foreground/80" />
-                        <p className="text-foreground/80">{cart?.referral_code}</p>
+                    <div className="flex flex-col gap-0.5">
+                        <div className="flex items-center gap-2">
+                            <Tags size={30} className="scale-x-[-1] text-foreground/80" />
+                            <p className="text-foreground/80">{cart?.referral_code}</p>
+                        </div>
+                        <p className="text-muted-foreground text-xs">{attributionLabel}</p>
                     </div>
                     <Button
                         variant="link"

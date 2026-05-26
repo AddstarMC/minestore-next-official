@@ -42,7 +42,7 @@ export const useCartActions = () => {
             return;
         }
 
-        if (!isCartCompatibleForItem(currentItem, itemType)) {
+        if (!isCartCompatibleForItem(currentItem, itemType, payment_type)) {
             return;
         }
 
@@ -72,7 +72,7 @@ export const useCartActions = () => {
         }
     };
 
-    function isCartCompatibleForItem(currentItem: TItem, itemType: 'regular' | 'subscription') {
+    function isCartCompatibleForItem(currentItem: TItem, itemType: 'regular' | 'subscription', paymentType: 'regular' | 'subscription' | 'gift' = 'regular') {
         const cartContainsSubs = items.some((x) => x.payment_type === 1);
         const cartContainsRegular = items.some((x) => x.payment_type === 0);
 
@@ -104,7 +104,7 @@ export const useCartActions = () => {
             return showError(t('item-out-of-stock'));
         }
 
-        if (isQuantityUserLimitReached) {
+        if (isQuantityUserLimitReached && paymentType !== 'gift') {
             return showError(t('reached-stock-limit'));
         }
 
