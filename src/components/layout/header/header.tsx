@@ -37,8 +37,8 @@ export const Header: FC<HeaderProps> = ({ settings, particles }) => {
             <div className="absolute inset-0 -z-20 h-[525px] w-full">
                 <div className="hero-image before:bg-primary/20 dark:before:bg-transparent">
                     <Image
-                        src={`/background.jpg?${cacheBuster}`}
-                        className="absolute -z-10 h-full w-full object-cover opacity-60"
+                        src={`/survival.jpg?${cacheBuster}`}
+                        className="absolute -z-10 h-full w-full object-cover opacity-40"
                         width={1590}
                         height={352}
                         alt=""
